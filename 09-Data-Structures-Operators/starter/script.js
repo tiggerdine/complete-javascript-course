@@ -215,7 +215,6 @@ restaurant.orderPizza('mushrooms');
 
 // The spread operator is used where we would otherwise write VALUES separated by commas
 // The rest pattern is used where we would otherwise write VARIABLE NAMES separated by commas
-*/
 
 // SHORT CIRCUITING (&& and ||)
 console.log('---- OR ----');
@@ -249,3 +248,13 @@ restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
 
 // The || operator will return the first truthy value of all the operands, or the last value (default values)
 // The && operator will return the first falsy value, or the last value (execute code in second operand if first is truthy)
+*/
+
+// THE NULLISH COALESCING OPERATOR (??)
+restaurant.numGuests = 0;
+const guests = restaurant.numGuests || 10;
+console.log(guests);
+
+// Nullish: null and undefined (NOT 0 or '')
+const guestCorrect = restaurant.numGuests ?? 10;
+console.log(guestCorrect);
