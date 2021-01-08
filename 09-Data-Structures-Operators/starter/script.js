@@ -1,6 +1,5 @@
 'use strict';
 
-/*
 const restaurant = {
     name: 'Classico Italiano',
     location: 'Via Angelo Tavanti 23, Firenze, Italy',
@@ -45,6 +44,7 @@ const restaurant = {
         console.log(otherIngredients);
     }
 };
+/*
 
 // DESTRUCTURING ARRAYS
 const arr = [2, 3, 4];
@@ -257,10 +257,8 @@ console.log(guests);
 // Nullish: null and undefined (NOT 0 or '')
 const guestCorrect = restaurant.numGuests ?? 10;
 console.log(guestCorrect);
-*/
 
-// Coding Challenge #1
-
+// CODING CHALLENGE #1
 const game = {
     team1: 'Bayern Munich',
     team2: 'Borrussia Dortmund',
@@ -333,3 +331,17 @@ printGoals(...game.scored);
 // 7.
 team1 < team2 && console.log(game.team1);
 team1 > team2 && console.log(game.team2);
+*/
+
+// LOOPING ARRAYS: THE FOR-OF LOOP
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+for (const item of menu) {
+    console.log(item);
+}
+
+for (const [i, el] of menu.entries()) {
+    console.log(`${i + 1}: ${el}`);
+}
+
+// console.log([...menu.entries()]);
