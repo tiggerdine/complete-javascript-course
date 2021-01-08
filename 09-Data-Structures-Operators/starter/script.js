@@ -1,5 +1,6 @@
 'use strict';
 
+/*
 const restaurant = {
     name: 'Classico Italiano',
     location: 'Via Angelo Tavanti 23, Firenze, Italy',
@@ -45,7 +46,6 @@ const restaurant = {
     }
 };
 
-/*
 // DESTRUCTURING ARRAYS
 const arr = [2, 3, 4];
 const a = arr[0];
@@ -248,7 +248,6 @@ restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
 
 // The || operator will return the first truthy value of all the operands, or the last value (default values)
 // The && operator will return the first falsy value, or the last value (execute code in second operand if first is truthy)
-*/
 
 // THE NULLISH COALESCING OPERATOR (??)
 restaurant.numGuests = 0;
@@ -258,3 +257,79 @@ console.log(guests);
 // Nullish: null and undefined (NOT 0 or '')
 const guestCorrect = restaurant.numGuests ?? 10;
 console.log(guestCorrect);
+*/
+
+// Coding Challenge #1
+
+const game = {
+    team1: 'Bayern Munich',
+    team2: 'Borrussia Dortmund',
+    players: [
+        [
+            'Neuer',
+            'Pavard',
+            'Martinez',
+            'Alaba',
+            'Davies',
+            'Kimmich',
+            'Goretzka',
+            'Coman',
+            'Muller',
+            'Gnarby',
+            'Lewandowski',
+        ],
+        [
+            'Burki',
+            'Schulz',
+            'Hummels',
+            'Akanji',
+            'Hakimi',
+            'Weigl',
+            'Witsel',
+            'Hazard',
+            'Brandt',
+            'Sancho',
+            'Gotze',
+        ],
+    ],
+    score: '4:0',
+    scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+    date: 'Nov 9th, 2037',
+    odds: {
+        team1: 1.33,
+        x: 3.25,
+        team2: 6.5,
+    },
+};
+
+// 1.
+const [players1, players2] = game.players;
+console.log(players1, players2);
+
+// 2.
+const [gk, ...fieldPlayers] = players1;
+console.log(gk, fieldPlayers);
+
+// 3.
+const allPlayers = [...players1, ...players2];
+console.log(allPlayers);
+
+// 4.
+const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
+console.log(players1Final);
+
+// 5.
+const {team1, x: draw, team2} = game.odds;
+console.log(team1, draw, team2);
+
+// 6.
+const printGoals = function(...playerNames) {
+    playerNames.forEach(n => console.log(n));
+    console.log(`${playerNames.length} goals were scored`);
+};
+// printGoals('Davies', 'Muller', 'Lewandowski', 'Kimmich');
+printGoals(...game.scored);
+
+// 7.
+team1 < team2 && console.log(game.team1);
+team1 > team2 && console.log(game.team2);
