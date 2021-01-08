@@ -173,7 +173,6 @@ const restaurantCopy = {...restaurant};
 restaurantCopy.name = 'Ristorante Roma';
 console.log(restaurantCopy.name);
 console.log(restaurant.name);
- */
 
 // REST PATTERN AND PARAMETERS
 // 1) Destructuring
@@ -216,3 +215,37 @@ restaurant.orderPizza('mushrooms');
 
 // The spread operator is used where we would otherwise write VALUES separated by commas
 // The rest pattern is used where we would otherwise write VARIABLE NAMES separated by commas
+*/
+
+// SHORT CIRCUITING (&& and ||)
+console.log('---- OR ----');
+// Use ANY data type, return ANY data type, short-circuiting
+console.log(3 || 'Martin');
+console.log('' || 'Martin');
+console.log(true || 0);
+console.log(undefined || null);
+
+console.log(undefined || 0 || '' || 'Hello' || 23 || null);
+
+restaurant.numGuests = 0;
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests1);
+
+const guests2 = restaurant.numGuests || 10;
+console.log(guests2);
+
+console.log('---- AND ----');
+console.log(0 && 'Martin');
+console.log(7 && 'Martin');
+
+console.log('Hello' && 23 && null && 'Martin');
+
+// Practical example
+if (restaurant.orderPizza) {
+    restaurant.orderPizza('mushrooms', 'spinach');
+}
+
+restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
+
+// The || operator will return the first truthy value of all the operands, or the last value (default values)
+// The && operator will return the first falsy value, or the last value (execute code in second operand if first is truthy)
