@@ -263,6 +263,7 @@ const guestCorrect = restaurant.numGuests ?? 10;
 console.log(guestCorrect);
 
 // CODING CHALLENGE #1
+*/
 const game = {
     team1: 'Bayern Munich',
     team2: 'Borrussia Dortmund',
@@ -303,6 +304,7 @@ const game = {
         team2: 6.5,
     },
 };
+/*
 
 // 1.
 const [players1, players2] = game.players;
@@ -385,7 +387,6 @@ if (users.length >= 0) {
 } else {
     console.log('User array empty');
 }
-*/
 
 // LOOPING OBJECTS: OBJECT KEYS, VALUES AND ENTITIES
 // Property NAMES
@@ -411,3 +412,37 @@ for (const x of entries) {
     const [key, {open, close}] = x;
     console.log(`On ${key} we open at ${open} and close at ${close}`);
 }
+*/
+
+// CODING CHALLENGE #2
+console.log(game);
+
+// 1.
+for (const [i, player] of game.scored.entries()) {
+    console.log(`Goal ${i + 1}: ${player}`);
+}
+
+// 2.
+const odds = Object.values(game.odds);
+let average = 0;
+for (const odd of odds) {
+    average += odd;
+}
+average /= odds.length;
+console.log(`The average odd is ${average}`);
+
+// 3.
+for (const [team, odd] of Object.entries(game.odds)) {
+    console.log(`Odd of ${game[team] ? 'victory ' + game[team] : 'draw'}: ${odd}`);
+}
+
+// 4.
+const scorers = {}
+for (const player of game.scored) {
+    if (scorers[player]) {
+        scorers[player]++;
+    } else {
+        scorers[player] = 1;
+    }
+}
+console.log(scorers);
