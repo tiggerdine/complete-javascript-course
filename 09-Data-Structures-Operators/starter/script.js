@@ -412,7 +412,6 @@ for (const x of entries) {
     const [key, {open, close}] = x;
     console.log(`On ${key} we open at ${open} and close at ${close}`);
 }
-*/
 
 // CODING CHALLENGE #2
 console.log(game);
@@ -446,3 +445,32 @@ for (const player of game.scored) {
     }
 }
 console.log(scorers);
+*/
+
+// SETS
+const ordersSet = new Set(['Pasta', 'Pizza', 'Pizza', 'Risotto', 'Pasta', 'Pizza']);
+console.log(ordersSet);
+
+console.log(new Set('Martin'));
+
+console.log(ordersSet.size);
+console.log(ordersSet.has('Pizza'));
+console.log(ordersSet.has('Bread'));
+ordersSet.add('Garlic Bread');
+ordersSet.add('Garlic Bread');
+ordersSet.delete('Risotto');
+// ordersSet.clear();
+console.log(ordersSet);
+
+for (const order of ordersSet) {
+    console.log(order);
+}
+
+// Example
+const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+const staffUnique = [...new Set(staff)];
+console.log(staffUnique);
+
+console.log(['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter']);
+
+console.log(new Set('martintiggerdine').size);
