@@ -350,7 +350,6 @@ for (const [i, el] of menu.entries()) {
 // console.log([...menu.entries()]);
 
 // ENHANCED OBJECT LITERALS
-*/
 
 // OPTIONAL CHAINING (.?)
 // Without optional chaining
@@ -385,4 +384,30 @@ if (users.length >= 0) {
     console.log(users[0].name);
 } else {
     console.log('User array empty');
+}
+*/
+
+// LOOPING OBJECTS: OBJECT KEYS, VALUES AND ENTITIES
+// Property NAMES
+const properties = Object.keys(openingHours);
+console.log(properties);
+
+let openStr = `We are open on ${properties.length} days:`;
+for (const day of properties) {
+    openStr += `${day}, `
+}
+console.log(openStr);
+
+// Property VALUES
+const values = Object.values(openingHours);
+console.log(values);
+
+// Entire object
+const entries = Object.entries(openingHours);
+// console.log(entries);
+
+// [key, value]
+for (const x of entries) {
+    const [key, {open, close}] = x;
+    console.log(`On ${key} we open at ${open} and close at ${close}`);
 }
