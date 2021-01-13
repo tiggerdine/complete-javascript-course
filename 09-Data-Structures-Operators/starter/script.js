@@ -681,7 +681,6 @@ const checkBaggage = function (items) {
 checkBaggage('I have a laptop, some Food and a pocket Knife');
 checkBaggage('Socks and camera');
 checkBaggage('Got some snacks and a gun for protection');
-*/
 
 // Working With Strings - Part 3
 
@@ -730,3 +729,27 @@ const planesInLine = function (n) {
 planesInLine(5);
 planesInLine(3);
 planesInLine(12);
+*/
+
+// Coding Challenge #4
+
+const convertToCamelCase = function (variableName) {
+    const [first, second] = variableName.toLowerCase().trim().split('_');
+    return first + second.replace(second[0], second[0].toUpperCase());
+}
+
+// console.log(convertToCamelCase('underscore_case'));
+// console.log(convertToCamelCase('Some_Variable'));
+// console.log(convertToCamelCase('calculate_AGE'));
+
+const textarea = document.createElement('textarea');
+document.body.append(textarea);
+
+const button = document.createElement('button');
+document.body.append(button);
+
+button.addEventListener('click', () => {
+    for (let [i, el] of textarea.value.split('\n').entries()) {
+        console.log(convertToCamelCase(el).padEnd(20) + '✅'.repeat(i + 1));
+    }
+})
