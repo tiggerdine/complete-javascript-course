@@ -112,7 +112,6 @@ greet('Hello')('Jonas');
 const greetArr = (greeting) => (name) => {console.log(`${greeting} ${name}`)}
 
 greetArr('Hi')('Jonas');
-*/
 
 // The call and apply Methods
 
@@ -209,3 +208,39 @@ const addTaxRate = function (rate) {
 const addVAT2 = addTaxRate(0.23);
 console.log(addVAT2(100));
 console.log(addVAT2(23));
+*/
+
+// Coding Challenge #1
+
+const poll = {
+    question: "What is your favourite programming language?",
+    options: ["0: JavaScript", "1: Python", "2: Rust", "3: C++"],
+    // This generates [0, 0, 0, 0]. More in the next section!
+    answers: new Array(4).fill(0),
+
+    registerNewAnswer() {
+        const message = [this.question, ...(this.options), '(Write option number)'].join('\n');
+        const answer = Number(prompt(message));
+
+        if (typeof answer === 'number' && answer >= 0 && answer < this.answers.length) {
+            this.answers[answer]++;
+        }
+
+        this.displayResults();
+    },
+
+    displayResults(type = 'array') {
+        if (type === 'array') {
+            console.log(this.answers);
+        } else if (type === 'string') {
+            console.log(`Poll results are ${this.answers.join(', ')}.`);
+        }
+    }
+};
+
+document.querySelector('.poll').addEventListener('click', () => poll.registerNewAnswer());
+
+poll.displayResults.call({answers: [5, 2, 3]});
+poll.displayResults.call({answers: [5, 2, 3]}, 'string');
+poll.displayResults.call({answers: [1, 5, 3, 9, 6, 1]});
+poll.displayResults.call({answers: [1, 5, 3, 9, 6, 1]}, 'string');

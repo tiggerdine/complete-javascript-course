@@ -160,7 +160,7 @@ console.log(...str);
 
 // Real-world example
 const ingredients = [
-    // prompt("Let's make pasta! Ingredient 1?"),
+    // prompt('Let's make pasta! Ingredient 1?'),
     // prompt('Ingredient 2?'),
     // prompt('Ingredient 3?')
 ];
