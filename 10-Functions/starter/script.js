@@ -243,7 +243,6 @@ poll.displayResults.call({answers: [5, 2, 3]});
 poll.displayResults.call({answers: [5, 2, 3]}, 'string');
 poll.displayResults.call({answers: [1, 5, 3, 9, 6, 1]});
 poll.displayResults.call({answers: [1, 5, 3, 9, 6, 1]}, 'string');
-*/
 
 // Immediately Invoked Function Expressions (IIFE)
 
@@ -269,3 +268,28 @@ runOnce();
 
 // console.log(isPrivate);
 console.log(notPrivate);
+*/
+
+// Closures
+
+const secureBooking = function () {
+    let passengerCount = 0;
+
+    return function() {
+        passengerCount++;
+        console.log(`${passengerCount} passengers`);
+    }
+}
+
+const booker = secureBooking();
+
+booker();
+booker();
+booker();
+
+/*
+ A function has access to the variable environment (VE) of the execution context in which it was created
+ Closure: VE attached to the function, exactly as it was at the time and place the function was created
+*/
+
+console.dir(booker);
