@@ -268,7 +268,6 @@ runOnce();
 
 // console.log(isPrivate);
 console.log(notPrivate);
-*/
 
 // Closures
 
@@ -287,9 +286,53 @@ booker();
 booker();
 booker();
 
-/*
- A function has access to the variable environment (VE) of the execution context in which it was created
- Closure: VE attached to the function, exactly as it was at the time and place the function was created
-*/
+// A function has access to the variable environment (VE) of the execution context in which it was created
+// Closure: VE attached to the function, exactly as it was at the time and place the function was created
 
 console.dir(booker);
+*/
+
+// More Closure Examples
+
+// Example 1
+let f;
+
+const g = function () {
+    const a = 23;
+    f = function () {
+        console.log(a * 2);
+    }
+}
+
+const h = function() {
+    const b = 777;
+    f = function () {
+        console.log(b * 2);
+    }
+}
+
+g();
+f();
+console.dir(f);
+
+// Re-assigning f function
+h();
+f();
+console.dir(f);
+
+// Example 2
+const boardPassengers = function (n, wait) {
+    const perGroup = n / 3;
+
+    setTimeout(() => {
+        console.log(`We are now boarding all ${n} passengers`);
+        console.log(`There are 3 groups, each with ${perGroup} passengers`);
+    }, wait * 1000);
+
+    console.log(`Will start boarding in ${wait} seconds`);
+}
+
+// setTimeout(() => {console.log('TIMER')}, 1000);
+
+const perGroup = 1000;
+boardPassengers(180, 3);
