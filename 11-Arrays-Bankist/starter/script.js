@@ -111,7 +111,6 @@ console.log([...arr, ...arr2]);
 console.log(letters.join(' - '));
 
 // push, unshift, pop, shift, indexOf, includes
-*/
 
 // 141. Looping Arrays: forEach
 
@@ -131,4 +130,19 @@ movements.forEach((mov, i, arr) => {
   } else {
     console.log(`Movement ${i + 1}: You withdrew ${Math.abs(mov)}`);
   }
+});
+*/
+
+// 142. forEach With Maps and Sets
+
+// Map
+currencies.forEach((value, key, map) => {
+  console.log(`${key}: ${value}`);
+});
+
+// Set
+const currenciesUnique = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR']);
+console.log(currenciesUnique);
+currenciesUnique.forEach((value, _, map) => {
+  console.log(`${value}: ${value}`);
 });
