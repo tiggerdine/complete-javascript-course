@@ -75,6 +75,7 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
+/*
 // 140. Simple Array Methods
 
 let arr = ['a', 'b', 'c', 'd', 'e'];
@@ -110,3 +111,24 @@ console.log([...arr, ...arr2]);
 console.log(letters.join(' - '));
 
 // push, unshift, pop, shift, indexOf, includes
+*/
+
+// 141. Looping Arrays: forEach
+
+// for (const movement of movements) {
+for (const [i, mov] of movements.entries()) {
+  if (mov > 0) {
+    console.log(`Movement ${i + 1}: You deposited ${mov}`);
+  } else {
+    console.log(`Movement ${i + 1}: You withdrew ${Math.abs(mov)}`);
+  }
+}
+
+console.log('---- FOREACH ----');
+movements.forEach((mov, i, arr) => {
+  if (mov > 0) {
+    console.log(`Movement ${i + 1}: You deposited ${mov}`);
+  } else {
+    console.log(`Movement ${i + 1}: You withdrew ${Math.abs(mov)}`);
+  }
+});
