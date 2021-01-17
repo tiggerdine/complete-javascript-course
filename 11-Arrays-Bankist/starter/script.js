@@ -61,6 +61,7 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+/*
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -75,7 +76,6 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
-/*
 // 140. Simple Array Methods
 
 let arr = ['a', 'b', 'c', 'd', 'e'];
@@ -131,7 +131,6 @@ movements.forEach((mov, i, arr) => {
     console.log(`Movement ${i + 1}: You withdrew ${Math.abs(mov)}`);
   }
 });
-*/
 
 // 142. forEach With Maps and Sets
 
@@ -146,3 +145,4 @@ console.log(currenciesUnique);
 currenciesUnique.forEach((value, _, map) => {
   console.log(`${value}: ${value}`);
 });
+*/
