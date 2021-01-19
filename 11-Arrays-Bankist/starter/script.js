@@ -236,7 +236,6 @@ console.log(depositsFor);
 
 const withdrawals = movements.filter(mov => mov < 0);
 console.log(withdrawals);
-*/
 
 // 150. The reduce Method
 
@@ -248,3 +247,15 @@ console.log(balance);
 // Maximum value
 const max = movements.reduce((max, cur) => max > cur ? max : cur);
 console.log(max);
+*/
+
+// 151. Coding Challenge #2
+
+const calcAverageHumanAge = function (ages) {
+  const humanAges = ages.map(age => age <= 2 ? 2 * age : 16 + 4 * age)
+    .filter(age => age >= 18);
+  return humanAges.reduce((acc, age) => acc + age) / humanAges.length;
+}
+
+console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
+console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
