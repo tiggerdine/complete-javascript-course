@@ -80,6 +80,14 @@ const displayMovements = function (movements) {
 }
 displayMovements(account1.movements);
 
+const createUsernames = function (accs) {
+  accs.forEach(acc => {
+    acc.username = acc.owner.toLowerCase().split(' ').map(name => name[0]).join('');
+  })
+}
+createUsernames(accounts);
+console.log(accounts);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -186,7 +194,6 @@ const dogsJulia = [9, 16, 6, 8, 3];
 const dogsKate = [10, 5, 6, 1, 4];
 
 checkDogs(dogsJulia, dogsKate);
-*/
 
 // 147. The map Method
 
@@ -207,3 +214,4 @@ const movementsDescriptions = movements.map((mov, i) =>
     `Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(mov)}`
 );
 console.log(movementsDescriptions);
+*/
