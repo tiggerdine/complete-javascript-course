@@ -1,5 +1,6 @@
 'use strict';
 
+/*
 // 205. Constructor Functions and the new Operator
 
 const Person = function(firstName, birthYear) {
@@ -77,3 +78,25 @@ console.log(arr.unique());
 
 const h1 = document.querySelector('h1');
 console.dir(x => x + 1);
+*/
+
+// 209. Coding Challenge #1
+
+const Car = function(make, speed) {
+  this.make = make;
+  this.speed = speed;
+}
+
+Car.prototype.accelerate = function() {
+  console.log(this.speed += 10);
+}
+
+Car.prototype.brake = function() {
+  console.log(this.speed -= 5);
+}
+
+const bmw = new Car('BMW', 120);
+bmw.accelerate();
+bmw.accelerate();
+bmw.brake();
+bmw.accelerate();
