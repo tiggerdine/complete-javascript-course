@@ -488,7 +488,6 @@ console.log(h1.parentElement.children);
     el.style.transform = 'scale(0.5)';
   }
 });
-*/
 
 // 199. Lifecycle DOM Events
 
@@ -501,3 +500,4 @@ window.addEventListener('load', e => console.log('Page fully loaded', e));
 //   console.log(e);
 //   e.returnValue = '';
 // });
+*/
