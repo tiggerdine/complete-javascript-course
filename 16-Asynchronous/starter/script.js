@@ -3,10 +3,6 @@
 const btn = document.querySelector('.btn-country');
 const countriesContainer = document.querySelector('.countries');
 
-///////////////////////////////////////
-
-// 244. Our First AJAX Call: XMLHttpRequest
-
 const renderCountry = (data, className = '') => {
   const html = `
   <article class='country ${className}'>
@@ -22,8 +18,17 @@ const renderCountry = (data, className = '') => {
   `;
 
   countriesContainer.insertAdjacentHTML('beforeend', html);
-  countriesContainer.style.opacity = 1;
+  // countriesContainer.style.opacity = 1;
 };
+
+const renderError = msg => {
+  countriesContainer.insertAdjacentText('beforeend', msg);
+  // countriesContainer.style.opacity = 1;
+};
+
+///////////////////////////////////////
+
+// 244. Our First AJAX Call: XMLHttpRequest
 
 /*
 const getCountryAndNeighbour = country => {
@@ -82,6 +87,7 @@ setTimeout(() => {
 // 247. Promises and the Fetch API
 // 248. Consuming Promises
 // 249. Chaining Promises
+// 250. Handling Rejected Promises
 
 const getCountryData = country => {
   // Country 1
@@ -97,7 +103,14 @@ const getCountryData = country => {
       return fetch(`https://restcountries.eu/rest/v2/alpha/${neighbour}`);
     })
     .then(response => response.json())
-    .then(data => renderCountry(data, 'neighbour'));
+    .then(data => renderCountry(data, 'neighbour'))
+    .catch(err => {
+      console.error(`${err} 💥💥💥`);
+      renderError(`Something went wrong 💥💥 ${err.message}. Try again!`);
+    })
+    .finally(() => countriesContainer.style.opacity = 1);
 };
 
-getCountryData('portugal');
+btn.addEventListener('click', () => getCountryData('portugal'));
+
+getCountryData('sdfsdfsdf');
