@@ -80,10 +80,12 @@ setTimeout(() => {
 */
 
 // 247. Promises and the Fetch API
+// 248. Consuming Promises
 
-// const request = new XMLHttpRequest();
-// request.open('GET', `https://restcountries.eu/rest/v2/name/${country}`);
-// request.send();
+const getCountryData = country => {
+  fetch(`https://restcountries.eu/rest/v2/name/${country}`)
+    .then(response => response.json())
+    .then(data => renderCountry(data[0]));
+};
 
-const request = fetch('https://restcountries.eu/rest/v2/name/portugal');
-console.log(request);
+getCountryData('portugal');
