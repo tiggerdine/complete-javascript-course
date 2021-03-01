@@ -18,12 +18,12 @@ const renderCountry = (data, className = '') => {
   `;
 
   countriesContainer.insertAdjacentHTML('beforeend', html);
-  // countriesContainer.style.opacity = 1;
+  countriesContainer.style.opacity = 1;
 };
 
 const renderError = msg => {
   countriesContainer.insertAdjacentText('beforeend', msg);
-  // countriesContainer.style.opacity = 1;
+  countriesContainer.style.opacity = 1;
 };
 
 ///////////////////////////////////////
@@ -82,7 +82,6 @@ setTimeout(() => {
     }, 1000);
   }, 1000);
 }, 1000);
-*/
 
 // 247. Promises and the Fetch API
 // 248. Consuming Promises
@@ -161,3 +160,36 @@ const getCountryData = country => {
 btn.addEventListener('click', () => getCountryData('portugal'));
 
 getCountryData('au');
+*/
+
+// 252. Coding Challenge #1
+
+const whereAmI = (lat, lng) => {
+  fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`)
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        throw new Error(`Problem with geocoding ${res.status}`);
+      }
+    })
+    .then(data => {
+      console.log(data);
+      console.log(`You are in ${data.city}, ${data.country}`);
+
+      return fetch(`https://restcountries.eu/rest/v2/name/${data.country}`);
+    })
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        throw new Error(`Country not found (${res.status})`);
+      }
+    })
+    .then(data => renderCountry(data[0]))
+    .catch(err => console.log(`${err.message} 💥`));
+};
+
+whereAmI(52.508, 13.381);
+whereAmI(19.037, 72.873);
+whereAmI(-33.933, 18.474);
