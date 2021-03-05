@@ -243,10 +243,8 @@ wait(1)
 
 Promise.resolve('abc').then(x => console.log(x));
 Promise.reject('abc').then(x => console.error(x));
-*/
 
 // 256. Promisifying the Geolocation API
-
 
 const getPosition = () => new Promise((resolve, reject) => {
   // navigator.geolocation.getCurrentPosition(
@@ -288,3 +286,53 @@ const whereAmI = () => {
 };
 
 btn.addEventListener('click', whereAmI);
+*/
+
+// 257. Coding Challenge #2
+
+const imgContainer = document.querySelector('.images');
+
+const createImage = imgPath => new Promise((resolve, reject) => {
+  const img = document.createElement('img');
+  img.src = imgPath;
+
+  img.addEventListener('load', () => {
+    imgContainer.append(img);
+    resolve(img);
+  });
+
+  img.addEventListener('error', () => reject(new Error('Image not found')));
+});
+
+const wait = seconds => new Promise(resolve => setTimeout(resolve, seconds * 1000));
+
+let currentImg;
+
+createImage('img/img-1.jpg')
+  .then(img => {
+    currentImg = img;
+    console.log('Image 1 loaded');
+    return wait(2);
+  })
+  .then(() => {
+    currentImg.style.display = 'none';
+    return createImage('img/img-2.jpg');
+  })
+  .then(img => {
+    currentImg = img;
+    console.log('Image 2 loaded');
+    return wait(2);
+  })
+  .then(() => {
+    currentImg.style.display = 'none';
+    return createImage('img/img-3.jpg');
+  })
+  .then(img => {
+    currentImg = img;
+    console.log('Image 3 loaded');
+    return wait(2);
+  })
+  .then(() => {
+    currentImg.style.display = 'none';
+  })
+  .catch(err => console.error(err));
