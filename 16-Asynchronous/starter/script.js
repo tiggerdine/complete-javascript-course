@@ -205,7 +205,6 @@ Promise.resolve('Resolved promise 2').then(res => {
 });
 
 console.log('Test end');
-*/
 
 // 255. Building a Simple Promise
 
@@ -244,3 +243,48 @@ wait(1)
 
 Promise.resolve('abc').then(x => console.log(x));
 Promise.reject('abc').then(x => console.error(x));
+*/
+
+// 256. Promisifying the Geolocation API
+
+
+const getPosition = () => new Promise((resolve, reject) => {
+  // navigator.geolocation.getCurrentPosition(
+  //   position => resolve(position),
+  //   err => reject(err)
+  // );
+  navigator.geolocation.getCurrentPosition(resolve, reject);
+});
+
+// getPosition().then(pos => console.log(pos));
+
+const whereAmI = () => {
+  getPosition().then(pos => {
+    const { latitude: lat, longitude: lng } = pos.coords;
+    return fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+  })
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        throw new Error(`Problem with geocoding ${res.status}`);
+      }
+    })
+    .then(data => {
+      console.log(data);
+      console.log(`You are in ${data.city}, ${data.country}`);
+
+      return fetch(`https://restcountries.eu/rest/v2/name/${data.country}`);
+    })
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        throw new Error(`Country not found (${res.status})`);
+      }
+    })
+    .then(data => renderCountry(data[0]))
+    .catch(err => console.log(`${err.message} 💥`));
+};
+
+btn.addEventListener('click', whereAmI);
