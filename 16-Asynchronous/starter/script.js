@@ -286,7 +286,6 @@ const whereAmI = () => {
 };
 
 btn.addEventListener('click', whereAmI);
-*/
 
 // 257. Coding Challenge #2
 
@@ -336,3 +335,31 @@ createImage('img/img-1.jpg')
     currentImg.style.display = 'none';
   })
   .catch(err => console.error(err));
+*/
+
+// 258. Consuming Promises with Async/Await
+
+const getPosition = () => new Promise((resolve, reject) => {
+  navigator.geolocation.getCurrentPosition(resolve, reject);
+});
+
+// fetch(`https://restcountries.eu/rest/v2/name/${country}`).then(res => console.log(res));
+
+const whereAmI = async () => {
+  // Geolocation
+  const pos = await getPosition();
+  const { latitude: lat, longitude: lng } = pos.coords;
+
+  // Reverse geocoding
+  const geoRes = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+  const geoData = await geoRes.json();
+  console.log(geoData);
+
+  // Country data
+  const res = await fetch(`https://restcountries.eu/rest/v2/name/${geoData.country}`);
+  const data = await res.json();
+  console.log(data);
+  renderCountry(data[0]);
+};
+whereAmI();
+console.log('FIRST');
