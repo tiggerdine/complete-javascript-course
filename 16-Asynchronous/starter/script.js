@@ -398,7 +398,6 @@ console.log('1: Will get location');
   }
   console.log('3: Finished getting location');
 })();
-*/
 
 // 261. Running Promises in Parallel
 
@@ -415,3 +414,37 @@ const get3Countries = async (...cs) => {
   }
 };
 get3Countries('portugal', 'canada', 'tanzania');
+*/
+
+// 262. Other Promise Combinators: race, allSettled and any
+
+// Promise.race
+(async () => {
+  const res = await Promise.race(['italy', 'egypt', 'mexico'].map(c => getJSON(`https://restcountries.eu/rest/v2/name/${c}`)));
+  console.log(res[0]);
+})();
+
+const timeout = sec => new Promise((_, reject) => {
+  setTimeout(() => reject(new Error('Request took too long!')), sec * 1000);
+});
+
+Promise.race([
+  getJSON('https://restcountries.eu/rest/v2/name/tanzania'),
+  timeout(1)
+])
+  .then(res => console.log(res[0]))
+  .catch(e => console.error(e));
+
+// Promise.allSettled
+Promise.allSettled([
+  Promise.resolve('Success'),
+  Promise.reject('ERROR'),
+  Promise.resolve('Another success')
+]).then(res => console.log(res));
+
+// Promise.any [ES2021]
+Promise.any([
+  Promise.resolve('Success'),
+  Promise.reject('ERROR'),
+  Promise.resolve('Another success')
+]).then(res => console.log(res));
