@@ -87,6 +87,7 @@ setTimeout(() => {
 // 248. Consuming Promises
 // 249. Chaining Promises
 // 250. Handling Rejected Promises
+*/
 
 const getJSON = (url, errorMsg = 'Something went wrong') => {
   return fetch(url).then(response => {
@@ -98,6 +99,7 @@ const getJSON = (url, errorMsg = 'Something went wrong') => {
   });
 };
 
+/*
 // const getCountryData = country => {
 //   // Country 1
 //   fetch(`https://restcountries.eu/rest/v2/name/${country}`)
@@ -335,7 +337,6 @@ createImage('img/img-1.jpg')
     currentImg.style.display = 'none';
   })
   .catch(err => console.error(err));
-*/
 
 // 258. Consuming Promises with Async/Await
 
@@ -397,3 +398,20 @@ console.log('1: Will get location');
   }
   console.log('3: Finished getting location');
 })();
+*/
+
+// 261. Running Promises in Parallel
+
+const get3Countries = async (...cs) => {
+  try {
+    // const [data1] = await getJSON(`https://restcountries.eu/rest/v2/name/${c1}`);
+    // const [data2] = await getJSON(`https://restcountries.eu/rest/v2/name/${c2}`);
+    // const [data3] = await getJSON(`https://restcountries.eu/rest/v2/name/${c3}`);
+
+    const data = await Promise.all(cs.map(c => getJSON(`https://restcountries.eu/rest/v2/name/${c}`)));
+    console.log(data.map(d => d[0].capital));
+  } catch (e) {
+    console.error(e);
+  }
+};
+get3Countries('portugal', 'canada', 'tanzania');
