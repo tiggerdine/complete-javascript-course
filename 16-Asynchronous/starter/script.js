@@ -346,6 +346,7 @@ const getPosition = () => new Promise((resolve, reject) => {
 // fetch(`https://restcountries.eu/rest/v2/name/${country}`).then(res => console.log(res));
 
 // 259. Error Handling With try...catch
+// 260. Returning Values from Async Functions
 
 const whereAmI = async () => {
   try {
@@ -358,30 +359,41 @@ const whereAmI = async () => {
     if (!geoRes.ok) {
       throw new Error('Problem getting location data');
     }
-
     const geoData = await geoRes.json();
-    console.log(geoData);
 
     // Country data
     const res = await fetch(`https://restcountries.eu/rest/v2/name/${geoData.country}`);
     if (!res.ok) {
       throw new Error('Problem getting country');
     }
-
     const data = await res.json();
-    console.log(data);
     renderCountry(data[0]);
+
+    return `You are in ${geoData.city}, ${geoData.country}`;
   } catch (e) {
     console.error(`${e} 💥`);
     renderError(`💥 ${e.message}`);
+
+    // Reject promise returned from async function
+    throw e;
   }
 };
-whereAmI();
-console.log('FIRST');
 
-// try {
-//   const x = 2;
-//   x = 3;
-// } catch (e) {
-//   alert(e.message);
-// }
+console.log('1: Will get location');
+// const city = whereAmI();
+// console.log(city);
+
+// whereAmI()
+//   .then(city => console.log(`2: ${city}`))
+//   .catch(e => console.error(`2: ${e.message} 💥`))
+//   .finally(() => console.log('3: Finished getting location'));
+
+(async () => {
+  try {
+    const city = await whereAmI();
+    console.log(`2: ${city}`)
+  } catch (e) {
+    console.error(`2: ${e.message} 💥`);
+  }
+  console.log('3: Finished getting location');
+})();
