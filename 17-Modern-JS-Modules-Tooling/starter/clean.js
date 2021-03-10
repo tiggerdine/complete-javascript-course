@@ -1,45 +1,53 @@
-var sc = [
-  { product: 'bread', quantity: 6 },
-  { product: 'pizza', quantity: 2 },
-  { product: 'milk', quantity: 4 },
-  { product: 'water', quantity: 10 },
+const budget = [
+  { value: 250, description: 'Sold old TV 📺', user: 'jonas' },
+  { value: -45, description: 'Groceries 🥑', user: 'jonas' },
+  { value: 3500, description: 'Monthly salary 👩‍💻', user: 'jonas' },
+  { value: 300, description: 'Freelancing 👩‍💻', user: 'jonas' },
+  { value: -1100, description: 'New iPhone 📱', user: 'jonas' },
+  { value: -20, description: 'Candy 🍭', user: 'matilda' },
+  { value: -125, description: 'Toys 🚂', user: 'matilda' },
+  { value: -1800, description: 'New Laptop 💻', user: 'jonas' },
 ];
 
-var allow = {
-  lisbon: 5,
-  others: 7,
+const spendingLimits = {
+  jonas: 1500,
+  matilda: 100,
 };
 
-var description = '';
+const getLimit = user => spendingLimits[user] || 0;
 
-var check = function (city) {
-  if (sc.length > 0) {
-    var allowed;
-    if (city == 'lisbon') {
-      allowed = allow.lisbon;
-    } else {
-      allowed = allow.others;
-    }
+const addExpenses = function (value, description, user = 'jonas') {
+  user = user.toLowerCase();
 
-    for (item of sc) {
-      if (item.quantity > allowed) item.quantity = allowed;
+  if (value <= getLimit(user)) {
+    budget.push({ value: -value, description: description, user: user });
+  }
+};
+addExpenses(10, 'Pizza 🍕');
+addExpenses(100, 'Going to movies 🍿', 'Matilda');
+addExpenses(200, 'Stuff', 'Jay');
+
+const checkExpenses = function () {
+  for (const entry of budget) {
+    if (entry.value < -getLimit(entry)) {
+      entry.flag = 'limit';
     }
   }
 };
-check('lisbon');
-console.log(sc);
+checkExpenses();
 
-var createDescription = function () {
-  var first = sc[0];
-  var p = first.product;
-  var q = first.quantity;
+console.log(budget);
 
-  if (sc.length > 1) {
-    description = 'Order with ' + q + ' ' + p + ', etc...';
-  } else {
-    description = 'Order with ' + q + ' ' + p + '.';
+const logBigExpenses = function (limit) {
+  let output = '';
+  for (const entry of budget) {
+    if (entry.value <= -limit) {
+      output += `${entry.description.slice(-2)} / `; // Emojis are 2 chars
+    }
   }
+  output = output.slice(0, -2); // Remove last '/ '
+  console.log(output);
 };
-createDescription();
 
-console.log(description);
+console.log(budget);
+logBigExpenses(500)
