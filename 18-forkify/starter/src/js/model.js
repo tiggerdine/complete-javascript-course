@@ -23,5 +23,6 @@ export const loadRecipe = async id => {
     console.log(state.recipe);
   } catch (e) {
     console.error(`${e} 💥`);
+    throw e;
   }
 };
