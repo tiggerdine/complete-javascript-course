@@ -110,6 +110,12 @@ const controlAddRecipe = async newRecipe => {
     // Success message
     addRecipeView.renderMessage('Recipe was successfully uploaded :)');
 
+    // Render bookmark view
+    bookmarksView.render(model.state.bookmarks);
+
+    // Change ID in URL
+    window.history.pushState(null, '', `#${model.state.recipe.id}`);
+
     // Close form window
     setTimeout(() => addRecipeView.toggleWindow(), MODAL_CLOSE_SEC * 1000);
   } catch (e) {
